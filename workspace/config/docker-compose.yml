@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+
+  application:
+
+    build: ../source
+
+    environment:
+
+      AWS_PROFILE: production
+
+      DATABASE_HOST: db.internal.acmecloud.local
+
+    restart: always
+
+  nginx:
+
+    image: nginx:latest
+
+    ports:
+
+      - "80:80"
+
+    depends_on:
+
+      - application
